@@ -12,8 +12,7 @@ def split_and_halve(input_list):
     list2 = []
     for num in input_list:
         if num == 1:
-            # Füge die 1 unverändert zu beiden Listen hinzu
-            u =  random.uniform(0, 1)  # z. B. a = 0, b = 1
+            u =  random.uniform(0, 1)  
             if(u < 0.5):
                 list1.append(num)
                 list2.append(0)
@@ -21,7 +20,6 @@ def split_and_halve(input_list):
                 list2.append(num)
                 list1.append(0)   
         else:
-            # Halbiere und füge zu beiden Listen hinzu
             half = num / 2
             list1.append(half)
             list2.append(half)
@@ -31,7 +29,7 @@ def split_and_halve(input_list):
 def test_LM(d, r, M , K, q):
      
     # Simulate the data according to the Linkage Model
-
+    
     # Create the true allele frequencies
     p = sL.create_random_matrix(M, K)
 
