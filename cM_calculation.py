@@ -139,3 +139,10 @@ def create_df():
 
 df_results_try = create_df()
             
+def get_distances_per_chromosome(df):
+    distances_dict = []
+    chromosomes = df['Chromosome'].unique()
+    for chrom in chromosomes:
+        distances = df.loc[df['Chromosome'] == chrom, 'GeneticDistance_cM'].tolist()
+        distances_dict.append(distances)
+    return distances_dict
