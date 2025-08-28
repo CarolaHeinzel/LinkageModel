@@ -2,8 +2,8 @@ import numpy as np
 import itertools
 
 # Hidden Markov Model Fisher Information for emission P(X_t=x|Z_t=z) = q_z p_{t,z}
-# and transition as described in the prompt
 # Only q and r are estimated, with constraints sum(q)=1, q>=0
+# haploid individuals
 
 def transition_prob(z_prev, z_next, d, r, q):
     if z_next == z_prev:
@@ -76,27 +76,7 @@ def forward_derivative(x, K, q, p, d_list, r, param_index, q_index=None):
     d_prob = np.sum(alpha_der[-1])
     return prob, d_prob
 
-def fisher_information_matrix_reduced(K, q, p, d_list, r):
-    # Only one free q parameter (q1), q2 = 1 - q1
-    n_params = 2  # q1, r
-    FI = np.zeros((n_params, n_params))
-    M = p.shape[0]
-    for x in itertools.product([0, 1], repeat=M):
-        # q = [q1, 1-q1]
-        q1 = q[0]
-        q_vec = np.array([q1, 1-q1])
-        # Derivatives w.r.t. q1 and r
-        p_x = forward_algorithm(x, K, q_vec, p, d_list, r)
-        # d/dq1: chain rule for q1 and q2
-        _, dq1 = forward_derivative(x, K, q_vec, p, d_list, r, param_index='q', q_index=0)
-        _, dq2 = forward_derivative(x, K, q_vec, p, d_list, r, param_index='q', q_index=1)
-        dq = dq1 - dq2  # since q2 = 1 - q1
-        _, dr = forward_derivative(x, K, q_vec, p, d_list, r, param_index='r')
-        grads = np.array([dq, dr])
-        FI += p_x * np.outer(grads, grads)
-    return FI
-
-def fisher_information_matrix_reduced_general(K, q, p, d_list, r):
+def fisher_information_matrix(K, q, p, d_list, r):
     # K-1 free q parameters, q_K = 1 - sum(q_1,...,q_{K-1})
     n_params = (K-1) + 1  # (K-1) q's, 1 r
     FI = np.zeros((n_params, n_params))
@@ -128,19 +108,9 @@ q = np.array([0.3, 0.7])
 p = np.array([[0.2, 0.9], [0.3, 0.8], [0.7, 0.6], [0.1, 0.9]])  # shape (M, K)
 r = 0.5
 d_list = [1.0] * M
-FI_reduced = fisher_information_matrix_reduced(K, q, p, d_list, r)
+FI_reduced = fisher_information_matrix(K, q, p, d_list, r)
 print("Fisher information matrix (reduced, q1 only):")
 print(FI_reduced)
 
-# Example usage for general K
-#%%
-K = 3
-M = 4
-q = np.array([0.2, 0.5, 0.3])
-p = np.array([[0.6, 0.4, 0.5], [0.9, 0.3, 0.4], [0.7, 0.6, 0.7], [0.1, 0.2, 0.1]])  # shape (M, K)
-r = 0.5
-d_list = [1.0] * M
-FI_general = fisher_information_matrix_reduced_general(K, q, p, d_list, r)
-print("Fisher information matrix (reduced, general K):")
-print(FI_general)
+
 
