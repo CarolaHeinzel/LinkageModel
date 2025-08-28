@@ -2,7 +2,7 @@
 
 This repository contains the following python files. <br>
 
-: Code to calculate the MLE for the ancestry in the Linkage Model for arbitrary many chromosomes. <br>
+Grid_Search_Linkage.py: Code to calculate the MLE for the ancestry in the Linkage Model for arbitrary many chromosomes. <br>
 Test_whole_Population.py : Code to apply the statistical test with H0: The user should apply the Admixture Model vs. H1: The user should use the Linkage Model to real data.<br>
 Fischer_Information_diploid.py: Fischer Information for the Admixture Model. <br>
 
