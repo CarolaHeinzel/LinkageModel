@@ -10,15 +10,9 @@ import math
 import sys
 import random
 sys.path.append("/home/ch1158/Ergebnisse_Paper/HMM/")
-import Simulation_Linkage_diploid as sL
 # Load the other data
 import Simulation_maximization_Admixture as sA
 import Grid_Search_Linkage_diploid as grid_l
-
-# Calculate the likelihood of the Admixture Model given the MLEs
-# for diploid individuals
-from scipy.special import comb  
-
 
 def split_and_halve(input_list):
     list1 = []
