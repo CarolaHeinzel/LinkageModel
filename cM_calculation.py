@@ -1,25 +1,22 @@
 import pandas as pd
-# https://github.com/dnapainter/apis
+
+# The maps are from https://github.com/adimitromanolakis/geneticMap-GRCh37.
+
 def load_genetic_map(filepath):
     df = pd.read_csv(filepath, sep='\t', compression='gzip')
     return df
 
 def interpolate_cM(genetic_map, position):
-    # Passende Spaltennamen verwenden
     position_col = 'Position(bp)'
     cm_col = 'Map(cM)'
-
-    # Sicherheitshalber sortieren
     genetic_map = genetic_map.sort_values(by=position_col)
 
-    # Nächstliegende Positionen finden
     before = genetic_map[genetic_map[position_col] <= position].iloc[-1]
     after = genetic_map[genetic_map[position_col] >= position].iloc[0]
 
     if before[position_col] == after[position_col]:
         return before[cm_col]
 
-    # Lineare Interpolation
     x0, y0 = before[position_col], before[cm_col]
     x1, y1 = after[position_col], after[cm_col]
     return y0 + ((position - x0) / (x1 - x0)) * (y1 - y0)
@@ -31,7 +28,7 @@ def compute_genetic_distance(file_path, pos1, pos2):
     return abs(cm2 - cm1)
 
 # Example
-file_path = "/home/ch1158/Ergebnisse_Paper/HMM/geneticMap-GRCh37-master/genetic_map_GRCh37_chr1.txt.gz"  # Pfad zur Datei
+file_path = "genetic_map_GRCh37_chr1.txt.gz"  
 pos1 = 101709563
 pos2 = 151122489
 distance_cm = compute_genetic_distance(file_path, pos1, pos2)
@@ -102,7 +99,7 @@ def create_df():
     results = []
     # f"/home/ch1158/Ergebnisse_Paper/HMM/geneticMap-GRCh37-master/genetic_map_GRCh37_chr{i}.txt.gz"
     for i in range(1, 23):  # Chromosomes 1 to 22
-        file_path = f"/home/ch1158/Ergebnisse_Paper/HMM/geneticMap-GRCh37-master/genetic_map_GRCh37_chr{i}.txt.gz"
+        file_path = f"genetic_map_GRCh37_chr{i}.txt.gz"
     
         # Filter SNPs for chromosome i and sort by position
         snps_chr = df_snps[df_snps['Chr'] == i].sort_values('Position').reset_index(drop=True)
