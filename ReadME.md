@@ -1,6 +1,7 @@
 # LinkageModel
 
-This repository contains the following python files. <br>
+This repository contains the code for the paper [A Statistical Test for Comparing the Linkage and Admixture Model Based
+on Central Limit Theorems](https://arxiv.org/abs/2509.12734). It contains the following python files. <br>
 
 Grid_Search_Linkage.py: Code to calculate the MLE for the ancestry in the Linkage Model for arbitrary many chromosomes. <br>
 Test_whole_Population.py : Code to apply the statistical test with H0: The user should apply the Admixture Model vs. H1: The user should use the Linkage Model to real data.<br>
