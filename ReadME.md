@@ -21,3 +21,9 @@ To apply the code, please download the files and run them in e.g. spyder. <br>
 ## Example Output of the code
 
 The example output of the code can be viewed as a comment in the code.<br>
+
+
+
+### Funding Acknowledgement
+
+Funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) – Project-ID 499552394 – SFB 1597.
