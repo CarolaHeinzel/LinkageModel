@@ -9,6 +9,7 @@ Test_whole_Population.py : Code to apply the statistical test with H0: The user 
 Additionally, it contains <br>
 
 1000G_AIMsetKidd.vcf: example data, which have the correct format for the statistical test. These are the 1000 Geneomes Data taken from [the GitHub page from Peter Pfaffelhuber](https://github.com/pfaffelh/recent-admixture/blob/master/data/1000G/1000G_AIMsetKidd.vcf.gz).<br>
+calc_determinant.py: code to calculate the determinante of the matrices M_1 and M_2 from the paper. <br> 
 
 The folder Evaluation consists of code that has been used to evaluate the methods. This includes
 : Code to evaluate the statistical test.<br>
