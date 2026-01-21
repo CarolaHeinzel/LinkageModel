@@ -1,11 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jul 16 17:47:06 2025
-
-@author: ch1158
-"""
-# Compare Fischer Information Admixture Model with Boostrap
+# Compare Fisher Information Admixture Model with Boostrap
 
 import numpy as np
 import sys
@@ -210,8 +203,6 @@ def simulation(numRep, K, q, r, d_values, p):
     return res, res_r
     
 # Fix q and p and calculate different values for  x
-
-
 # 2) Calculate the boostrap variance of the data
 
 K = 5
@@ -221,18 +212,13 @@ q = [0.8, 0.04, 0.04, 0.08, 0.04]
 r = 1.8
 
 var_bootstrap = simulation(100, K, q, r, d_values, p_final_new)
-#%%
 
 print("variance of r", np.var(var_bootstrap[1]))
 matrix = np.vstack((var_bootstrap[0]))
 
-# 1) Varianz pro Komponente (Spalte)
-variances = np.var(matrix, axis=0, ddof=1)  # ddof=1 für Stichprobenvarianz
+variances = np.var(matrix, axis=0, ddof=1)  
 
-# 2) Kovarianzmatrix (3x3)
 cov_matrix = np.cov(matrix.T, ddof=1)
 
 print("Varianz pro Komponente:", variances)
 print("\nKovarianzmatrix:\n", cov_matrix)
-#%%
-#
