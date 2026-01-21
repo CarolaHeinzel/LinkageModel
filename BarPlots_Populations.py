@@ -12,7 +12,6 @@ df = pd.read_csv(path, sep="\t", encoding="utf-8", header = None)
 
 col = df.iloc[:, 2]
 
-# Finde Indizes, bei denen der Wert exakt "EUR" ist
 index_list_EUR = col[col == "EUR"].index.tolist()
 index_list_EAS = col[col == "EAS"].index.tolist()
 index_list_SAS = col[col == "SAS"].index.tolist()
@@ -30,7 +29,6 @@ count = sum(1 for x in lst if x in index_list_SAS)
 print(count, len(index_list_SAS))
 count = sum(1 for x in lst if x in index_list_EAS)
 print(count, len(index_list_EAS))
-#%%
 
 # Results
 intervals = [(488, 503),
@@ -39,22 +37,18 @@ intervals = [(488, 503),
              (471, 489),
              (337, 504)]
 
-# Start- und Endwerte extrahieren
 starts = [i[0] for i in intervals]
 ends = [i[1] for i in intervals]
 
-# Anzahl der Intervalle
 n = len(intervals)
-x = np.arange(n)  # X-Positionen
+x = np.arange(n) 
 
-bar_width = 0.35  # Breite der Balken
+bar_width = 0.35 
 
-# Plot
 plt.figure(figsize=(8, 5))
 plt.bar(x - bar_width/2, starts, bar_width, label='Number of Reject H0', color='purple')
 plt.bar(x + bar_width/2, ends, bar_width, label='Number of Individuals in total', color='grey')
 
-# Achsen und Labels
 plt.xticks(x, ["EUR", "AFR", "AMR", "SAS", "EAS"])
 plt.ylabel('Number of Individuals')
 plt.legend()
