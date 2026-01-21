@@ -97,7 +97,6 @@ df_snps = pd.DataFrame(snps)
 
 def create_df():
     results = []
-    # f"/home/ch1158/Ergebnisse_Paper/HMM/geneticMap-GRCh37-master/genetic_map_GRCh37_chr{i}.txt.gz"
     for i in range(1, 23):  # Chromosomes 1 to 22
         file_path = f"genetic_map_GRCh37_chr{i}.txt.gz"
     
