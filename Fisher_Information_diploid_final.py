@@ -180,8 +180,6 @@ def fisher_information_matrix_diploid(K, q, p, d_list, r):
             _, dr2 = forward_algorithm_derivative(x2, K, q, p, d_list, r, param_index='r')
             grads.append(dr1/p_x1  + dr2/p_x2)
             grads = np.array(grads)
-            #print("grad", grads, p_joint)
-            # grads.T * grads and p_joint to calculate the expected value
             FI += p_joint * np.outer(grads, grads)
     return FI 
 
@@ -194,14 +192,10 @@ p = [
    
 ]
 
-# [[0.0018495  0.00106768]
-#  [0.00106768 0.00226079]]
 r = 0.5
 d_list = [1.0, 1.0, 1.0, 1.0]
 
 FI_diploid = fisher_information_matrix_diploid(K, q, p, d_list, r)
 print("Fisher information matrix (diploid):")
 print(np.linalg.inv(FI_diploid))
-# To do:
-# Calculate the variance of the other populations
-# evaluate the calculation using bootstrap
+
