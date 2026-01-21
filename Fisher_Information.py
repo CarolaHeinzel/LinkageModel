@@ -9,7 +9,6 @@ def forward_algorithm_derivative(x, K, q, p, d_list, r,
     alpha = np.zeros((M, K))
     alpha_der = np.zeros((M, K))
     
-    # Initialisierung i = 0
     for z in range(K):
         e_prob = emission_prob(x[0], z, q, p, 0)
         e_der  = emission_prob_der(x[0], z, q, p, 0)
@@ -20,9 +19,8 @@ def forward_algorithm_derivative(x, K, q, p, d_list, r,
         else:
             alpha_der[0, z] = 0
 
-    # Rekursion i >= 1
     for i in range(1, M):
-        for z in range(K):  # aktueller Zustand z
+        for z in range(K):  
             sum_alpha = 0
             sum_alpha_der = 0
             for z_prev in range(K):
@@ -45,7 +43,6 @@ def forward_algorithm_derivative(x, K, q, p, d_list, r,
             alpha[i, z] = sum_alpha * e_prob
             alpha_der[i, z] = sum_alpha_der * e_prob + sum_alpha * e_der
 
-    # Gesamtwahrscheinlichkeit und Ableitung
     prob = np.sum(alpha[-1])
     d_prob = np.sum(alpha_der[-1])
 
@@ -58,8 +55,6 @@ def emission_prob(x_i, z, q, p, i):
     q_z = q[z]
     p_zi = p[z][i]
     return  ((q_z *p_zi)**x_i) * ((1 - q_z *p_zi)**(1 - x_i))
-
-
 
 
 def transition_prob_der(z_prev, z_next, d, r, q, param_index):
@@ -83,7 +78,6 @@ def emission_prob_der(x_i, z, q, p, i):
     if(x_i == 0):
         res = - p_zi
     return res
-
 
 
 def transition_prob(z_prev, z_next, d, r, q):
