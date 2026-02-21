@@ -1,10 +1,6 @@
 # Evaluate the statistical Test (diploid case)
 
 import numpy as np
-import sys
-
-sys.path.append("C:\\Users\\carol\\Downloads")
-
 import Simulation_Linkage_dip as sL
 import Test_LM_AM_diploid as test
 
