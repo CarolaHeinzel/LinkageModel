@@ -9,9 +9,6 @@ import Simulation_Linkage_msprime as sL
 
 
 
-# -----------------------
-# PATHS (EDIT THESE)
-# -----------------------
 VCF_PATH = r"all_chr.biallelic.every2k.maf5.vcf.gz"
 DIST_CSV = r"GeneticDistances_1000G.csv"
 
@@ -382,8 +379,6 @@ if __name__ == "__main__":
     # 2) Load distances and build d_step
     pair_dist = load_pair_distances(DIST_CSV)
 
-    # Keep only markers that appear in the distance lookup at least once (optional but safer)
-    # If you want strict match, require each consecutive pair to exist; we also have fallback.
     df_af = df_af.sort_values(["Chr", "Position"]).reset_index(drop=True)
 
     p = make_p_matrix(df_af, POP_ORDER, EPS)
