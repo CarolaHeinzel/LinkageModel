@@ -35,15 +35,12 @@ def rep_test(numRep, d, r, M, K, q):
     reject_LM = 0
 
     for i in range(numRep):
-        print("i", i)
         t_AM = test_AM(M, K, q, d, r)
         if t_AM["reject_H0"] is False:
             accept_AM += 1 # AM is truth
-        print(accept_AM)
         t_LM = test_LM(d, r, M, K, q) # LM is truth
         if t_LM["reject_H0"] is True:
             reject_LM += 1
-        print(reject_LM)
 
     return accept_AM / numRep, reject_LM / numRep
 
