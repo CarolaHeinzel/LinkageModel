@@ -1,9 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
+# Code to create the power plots in the paper
 
-d_list = [0.1, 1, 2, 5]
-Ms = [50, 100, 200, 500, 1000, 10000]
-r_loop = [0.1, 1, 10]
+d_list = [0.1, 1, 2, 5] # different values for d
+Ms = [50, 100, 200, 500, 1000, 10000] # values for M
+r_loop = [0.1, 1, 10] # values for r
 
 H1 = np.array([
     [0.00, 0.05, 0.03, 0.00],
