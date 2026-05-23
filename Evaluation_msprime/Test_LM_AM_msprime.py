@@ -148,7 +148,7 @@ def loglik_LM(X, q, p, d, r):
 def likelihood_ratio_test(logL_restricted, logL_unrestricted, df=1, alpha=0.05):
     LR_stat = 2.0 * (float(logL_unrestricted) - float(logL_restricted))
     p_value = 1.0 - chi2.cdf(LR_stat, df)
-    critical_value = chi2.ppf(1.0 - alpha, df)
+    critical_value = chi2.ppf(1.0 - 2*alpha, df)
     reject = bool(LR_stat > critical_value)
     return {
         "LR_statistic": float(LR_stat),
