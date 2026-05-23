@@ -340,7 +340,6 @@ if __name__ == "__main__":
     target_fst = 0.25
     m = pairwise_m_for_target_fst(target_fst=target_fst, Ne=Ne, K=K)
 
-    # You may need to increase sequence_length / mutation_rate if you get < 1000 SNPs.
     C = 5
     sequence_length = 2e7
     recombination_rate = 1e-8
